@@ -4,6 +4,7 @@ export const PageWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
+  content-visibility: auto;
 `
 
 export const SearchBoxWrapper = styled.div`

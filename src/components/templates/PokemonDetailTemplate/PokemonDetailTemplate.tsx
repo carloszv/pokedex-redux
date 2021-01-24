@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -139,7 +139,12 @@ export default function PokemonDetailTemplate({
             ></Image>
           </ImageWrapper>
           <ChartWrapper>
-            <Chart stats={pokemon.stats} />
+            {useMemo(
+              () => (
+                <Chart stats={pokemon.stats} />
+              ),
+              [pokemon.stats],
+            )}
           </ChartWrapper>
         </LeftContent>
         <RigthContent>

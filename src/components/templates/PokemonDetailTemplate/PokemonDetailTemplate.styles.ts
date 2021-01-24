@@ -4,6 +4,7 @@ export const PokemonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 10%;
+  content-visibility: auto;
 
   @media (max-width: 768px) {
     width: -webkit-fill-available;

@@ -1,4 +1,5 @@
 import React, { ReactElement, useCallback, useState } from 'react'
+import LazyLoad from 'react-lazyload'
 import { PokemonListItemType } from 'types/pokedex'
 
 import {
@@ -27,7 +28,9 @@ export default function PokemonListItem({
   return (
     <ListItem key={pokemon.id} onClick={handleClick}>
       <ImageWrapper>
-        <Img src={imageUrl} alt={pokemon.name} onError={handleError} />
+        <LazyLoad height={200} offset={500}>
+          <Img src={imageUrl} alt={pokemon.name} onError={handleError} />
+        </LazyLoad>
       </ImageWrapper>
       <Info>
         <ItemId>{`Nº ${pokemon.id}`}</ItemId>

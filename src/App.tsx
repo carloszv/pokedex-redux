@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { PokedexState } from 'store/state'
 import PageLayout from 'components/foundations/PageLayout/PageLayout'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -13,8 +14,12 @@ import getAllPokemon from 'services/pokeapi/getAllPokemon'
 
 export default function App() {
   const dispatch = useDispatch()
+  const pokemonList = useSelector((state: PokedexState) => state.pokemonList)
+
   useEffect(() => {
-    getAllPokemon(dispatch)
+    if (pokemonList.length === 0) {
+      getAllPokemon(dispatch)
+    }
   }, [])
 
   return (

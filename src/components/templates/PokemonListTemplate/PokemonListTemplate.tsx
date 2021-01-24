@@ -1,5 +1,6 @@
-import React, { ChangeEvent, ReactElement, useState } from 'react'
+import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { forceCheck } from 'react-lazyload'
 
 import { PokemonListItemType } from 'types/pokedex'
 import PokemonList from 'components/elements/PokemonList/PokemonList'
@@ -26,7 +27,6 @@ export default function ListPageTemplate({
   })
 
   function search(e: ChangeEvent<HTMLInputElement>) {
-    e.preventDefault()
     const value = e.target.value
 
     setState((previousState) => ({ ...previousState, searchBox: value }))
@@ -49,6 +49,10 @@ export default function ListPageTemplate({
       }))
     }
   }
+
+  useEffect(() => {
+    forceCheck()
+  }, [state.pokemonListDisplayed])
 
   function onClick(name: string) {
     history.push(`/pokemon/${name}`)
